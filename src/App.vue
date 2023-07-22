@@ -1,30 +1,51 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import {ref} from "vue"
+const about = ref('Hello world')
+const links=[
+  {
+    name: 'Google',
+    url: "https://www.google.com",
+    about:"Google is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware."
+  },
+  {
+    name: 'Microsoft',
+    url: "https://www.microsoft.com",
+    about:"Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington. It develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services."
+  },
+  {
+    name: 'Facebook',
+    url: "https://www.facebook.com",
+    about:"Facebook is an American online social media and social networking service based in Menlo Park, California, and a flagship service of the namesake company Facebook, Inc."
+  },
+  {
+    name:"Twitter",
+    url:"https://www.twitter.com",
+    about:"Twitter is an American microblogging and social networking service on which users post and interact with messages known as tweets. Registered users can post, like and retweet tweets, but unregistered users can only read them."
+  }
+]
+
+function setText(text){
+  about.value = text
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+<section class="container mx-auto flex items-center flex-col">
+        <h1 class="text-center text-2xl py-10">Events &amp; Reactivity in Vue.js</h1>
+        <!-- <h1 class="text-center text-2xl py-10">{{ about }}</h1> -->
+        <h2 class="mt-10">{{ about }}</h2>
+        <div class="container mx-auto flex space-x-5 justify-center m-[1000px]">
+          <a target="_blank"  
+          v-for=" link in links" 
+          :key="link.name" 
+          href="#"
+          @click.prevent="setText(link.about)"
+          >
+          {{ link.name }}</a>
+          
+        </div>
+    </section>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
